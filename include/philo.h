@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/07 12:48:29 by kblok         #+#    #+#                 */
-/*   Updated: 2023/02/14 12:48:57 by kblok         ########   odam.nl         */
+/*   Updated: 2023/02/14 14:58:30 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,39 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+typedef enum e_clean
+{
+	FORK,
+	DATA,
+	STRUCT,
+	PRINT
+}	t_clean;
+
 typedef struct s_philo
 {
 	int			id;
-	// pthread_t	thread;
-
 	long		time_eaten;
 	long		meals_eaten;
 	void		*left_fork;
 	void		*right_fork;
+	
+	pthread_t	thread;
 }	t_philo;
 
 typedef struct s_data
 {
 	int				amount_philo;
-
+	int				amount_meals;
 	long			time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;
 	bool			meals;
-	int				amount_meals;
-
 	bool			sim_active;
+	
 	t_philo			*philo;
-	// pthread_mutex_t	*fork;
-	// pthread_mutex_t	print_lock;
-	// pthread_mutex_t	data_lock;
+	pthread_mutex_t	*fork;
+	pthread_mutex_t	lock_print;
+	pthread_mutex_t	lock_data;
 }	t_data;
 
 #endif
