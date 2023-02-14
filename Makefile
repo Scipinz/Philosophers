@@ -6,7 +6,7 @@
 #    By: kblok <kblok@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/11/16 20:46:21 by kblok         #+#    #+#                  #
-#    Updated: 2023/02/13 13:52:42 by kblok         ########   odam.nl          #
+#    Updated: 2023/02/13 17:06:15 by kblok         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,11 @@ HEADERS		= 	-I include
 SRCS		=	$(addprefix src/, \
 					main.c \
 				$(addprefix utils/, \
+					get_time.c \
+					initiate_data.c \
 					validate_args.c) \
 				$(addprefix functions/, \
+					ft_calloc.c \
 					ft_atoi.c) \
 				)
 

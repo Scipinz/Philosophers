@@ -6,11 +6,22 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/16 18:21:12 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/09 15:32:11 by kblok         ########   odam.nl         */
+/*   Updated: 2023/02/13 16:58:51 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdint.h>
+#include <stddef.h>
+
+static int	ft_isspace(int c)
+{
+	return ((c >= '\t' && c <= '\r') || c == ' ');
+}
+
+static int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
 
 long	ft_atoi(const char *str)
 {
@@ -36,10 +47,3 @@ long	ft_atoi(const char *str)
 	}
 	return (sign * res);
 }
-
-// COMMENTS:
-
-// res = res * 10 + str[idx] - '0';
-// - '0' to make char to int
-// res * 10 to go to the following place in the number
-// that will be converted to an int.

@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   get_time.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/07 12:47:29 by kblok         #+#    #+#                 */
-/*   Updated: 2023/02/13 15:11:44 by kblok         ########   odam.nl         */
+/*   Created: 2023/02/13 16:59:48 by kblok         #+#    #+#                 */
+/*   Updated: 2023/02/13 17:03:20 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+long	get_time(void)
 {
-	t_data	data;
+	struct timeval	time;
 
-	if (!validate_args(argc, argv))
-		return (EXIT_FAILURE);
-	if (!init_data(&data, argv))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	gettimeofday(&time, NULL);
+	return (((time.tv_sec) * 1000) + ((time.tv_usec) / 1000));
 }
