@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/07 12:47:29 by kblok         #+#    #+#                 */
-/*   Updated: 2023/02/13 15:11:44 by kblok         ########   odam.nl         */
+/*   Updated: 2023/02/14 15:16:43 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,10 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (!init_data(&data, argv))
 		return (EXIT_FAILURE);
+	if (!sim_exec(&data))
+		return (EXIT_FAILURE);
+	sim_check(&data);
+	p_join(&data, ALL);
+	cleanup(&data, ALL);
 	return (EXIT_SUCCESS);
 }

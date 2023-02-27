@@ -6,7 +6,7 @@
 #    By: kblok <kblok@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/11/16 20:46:21 by kblok         #+#    #+#                  #
-#    Updated: 2023/02/14 14:54:53 by kblok         ########   odam.nl          #
+#    Updated: 2023/02/14 15:13:51 by kblok         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS		=	$(addprefix src/, \
 					ft_atoi.c) \
 				$(addprefix simulation/, \
 					threads.c \
+					sim_exec.c \
 				)
 
 #==============================================================================: Color codes

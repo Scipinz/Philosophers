@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/07 12:48:29 by kblok         #+#    #+#                 */
-/*   Updated: 2023/02/14 14:58:30 by kblok         ########   odam.nl         */
+/*   Updated: 2023/02/14 15:18:57 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef enum e_clean
 	FORK,
 	DATA,
 	STRUCT,
-	PRINT
+	PRINT,
+	ALL
 }	t_clean;
 
 typedef struct s_philo
@@ -53,5 +54,11 @@ typedef struct s_data
 	pthread_mutex_t	lock_print;
 	pthread_mutex_t	lock_data;
 }	t_data;
+
+typedef struct s_wrap
+{
+	t_data	*w_data;
+	t_philo	*w_philo;
+}	t_wrap;
 
 #endif
