@@ -6,7 +6,7 @@
 #    By: kblok <kblok@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/11/16 20:46:21 by kblok         #+#    #+#                  #
-#    Updated: 2023/02/14 15:13:51 by kblok         ########   odam.nl          #
+#    Updated: 2023/02/27 16:42:39 by kblok         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ HEADERS		= 	-I include
 SRCS		=	$(addprefix src/, \
 					main.c \
 				$(addprefix utils/, \
+					sim_check.c \
 					get_time.c \
 					initiate_data.c \
 					validate_args.c) \
