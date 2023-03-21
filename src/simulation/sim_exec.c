@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/14 15:12:04 by kblok         #+#    #+#                 */
-/*   Updated: 2023/02/27 16:37:32 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/20 14:23:31 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	*sims(void *arg)
 {
-	t_data	*data;
 	t_philo	*philo;
+	t_data	*data;
 
-	data = ((t_wrap *)arg)->w_data;
 	philo = ((t_wrap *)arg)->w_philo;
+	data = ((t_wrap *)arg)->w_data;
 	free ((t_wrap *)arg);
 	while (read_data(&data->lock_data, &data->sim_active))
 	{
 		if (!philo_eat(data, philo) || \
-			!philo_sleep(data, philo) || \
-			!philo_think(data, philo))
+			!philo_think(data, philo) || \
+			!philo_sleep(data, philo))
 			return (NULL);
 	}
 	return (NULL);
@@ -32,11 +32,11 @@ void	*sims(void *arg)
 
 static bool	make_threads(t_data *data)
 {
-	size_t	i;
 	t_wrap	*data_wrap;
+	size_t	i;
 
 	i = 0;
-	while (i < data->amount_philo)
+	while (data->amount_philo > i)
 	{
 		data_wrap = malloc(sizeof(t_wrap));
 		if (!data_wrap)

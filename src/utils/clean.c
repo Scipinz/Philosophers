@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/14 14:44:12 by kblok         #+#    #+#                 */
-/*   Updated: 2023/02/14 15:21:53 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/20 14:24:33 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ void	clean(t_data *data, t_clean n)
 	i = 0;
 	if (n == STRUCT)
 	{
-		free (data->philo);
 		free (data->fork);
+		free (data->philo);
 	}
 	if (n >= DATA)
 		pthread_mutex_destroy(&data->lock_data);
 	if (n >= PRINT)
 		pthread_mutex_destroy(&data->lock_print);
-	while (n >= FORK && i < data->amount_philo && data->fork)
+	while (n >= FORK && data->amount_philo > i && data->fork)
 	{
 		pthread_mutex_destroy(&data->fork[i]);
 		i++;
 	}
-	free (data->philo);
 	free (data->fork);
+	free (data->philo);
 }
