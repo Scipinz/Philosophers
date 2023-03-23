@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/27 16:36:20 by kblok         #+#    #+#                 */
-/*   Updated: 2023/03/22 14:04:08 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/23 15:58:01 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static bool	meal_check(t_data *data)
 	pthread_mutex_lock(&data->lock_data);
 	data->active_sim = false;
 	pthread_mutex_unlock(&data->lock_data);
-	print_state(data, data->philo, FINISHED, true);
 	return (true);
 }
 

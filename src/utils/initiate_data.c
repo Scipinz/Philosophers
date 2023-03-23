@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:17:49 by kblok         #+#    #+#                 */
-/*   Updated: 2023/03/23 15:26:46 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/23 15:51:01 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static bool	init_philos(t_data *data)
 
 void	assign_args(t_data *data, char **argv)
 {
+	data->amount_meals = 0;
+	data->meals = false;
 	data->amount_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
