@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/07 12:48:29 by kblok         #+#    #+#                 */
-/*   Updated: 2023/03/23 12:21:55 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/23 13:09:37 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	clean(t_data *data, t_clean n);
 // actions
 bool	action_thinking(t_data *data, t_philo *philo);
 bool	action_sleeping(t_data *data, t_philo *philo);
-void	pick_up_forks(t_data *data, t_philo *philo);
+bool	pick_up_forks(t_data *data, t_philo *philo);
 bool	action_eating(t_data *data, t_philo *philo);
 
 // threads

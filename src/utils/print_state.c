@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 14:44:54 by kblok         #+#    #+#                 */
-/*   Updated: 2023/03/22 18:35:00 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/23 15:05:02 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_state(t_data *data, t_philo *philo, t_state state, bool death)
 		else if (state == PICK_UP_FORK)
 			printf(YEL "has taken a fork\n" RESET);
 		else if (state == THINKING)
-			printf(CYN "is sleeping\n" RESET);
+			printf(CYN "is thinking\n" RESET);
 		else if (state == DIED)
 			printf(RED "has died\n" RESET);
 		else if (state == FINISHED)

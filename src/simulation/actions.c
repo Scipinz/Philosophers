@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 15:06:46 by kblok         #+#    #+#                 */
-/*   Updated: 2023/03/22 16:52:08 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/23 15:29:46 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	action_sleeping(t_data *data, t_philo *philo)
 	return (true);
 }
 
-void	pick_up_forks(t_data *data, t_philo *philo)
+bool	pick_up_forks(t_data *data, t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
@@ -54,15 +54,26 @@ void	pick_up_forks(t_data *data, t_philo *philo)
 		pthread_mutex_lock(philo->left_fork);
 		print_state(data, philo, PICK_UP_FORK, false); 
 	}
+	return (true);
 }
 
 bool	action_eating(t_data *data, t_philo *philo)
 {
+	if (!read_data(&data->lock_data, &data->active_sim))
+		return (false);
+	if (!pick_up_forks(data, philo))
+		return (false);
 	print_state(data, philo, EATING, false);
+	pthread_mutex_lock(&data->lock_data);
 	philo->time_eaten = gettime();
+	pthread_mutex_unlock(&data->lock_data);
 	action_start(data->time_to_eat);
 	if (data->meals > 0)
+	{
+		pthread_mutex_lock(&data->lock_data);
 		philo->meals_eaten += 1;
+		pthread_mutex_unlock(&data->lock_data);
+	}
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	return (true);

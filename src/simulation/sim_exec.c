@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/14 15:12:04 by kblok         #+#    #+#                 */
-/*   Updated: 2023/03/22 13:56:02 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/23 14:13:04 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static bool	make_threads(t_data *data)
 	size_t	i;
 
 	i = 0;
+	data->active_sim = true;
 	while (data->amount_philo > i)
 	{
 		data_wrap = malloc(sizeof(t_wrap));
