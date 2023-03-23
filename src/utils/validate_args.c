@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 12:06:55 by kblok         #+#    #+#                 */
-/*   Updated: 2023/02/13 15:09:49 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/22 13:46:39 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ bool	validate_args(int argc, char **argv)
 	i = 1;
 	if (argc != 5 && argc != 6)
 	{
-		printf("Error: invalid amount of arguments\n"
-			"Try: [number_of_philosophers] [time_to_die] [time_to_eat]\
-			[time_to_sleep] optionally [number_of_meals]");
+		printf("Error: invalid amount of arguments\n");
+		printf("Try: [number_of_philosophers] [time_to_die] [time_to_eat]");
+		printf(" [time_to_sleep] optionally [number_of_meals]\n");
 		return (false);
 	}
 	if (ft_atoi(argv[1]) > 200)

@@ -6,7 +6,7 @@
 #    By: kblok <kblok@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/11/16 20:46:21 by kblok         #+#    #+#                  #
-#    Updated: 2023/02/27 16:42:39 by kblok         ########   odam.nl          #
+#    Updated: 2023/03/21 15:46:45 by kblok         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ OBJS		= 	$(SRCS:srcs/%.c=objs/%.o)
 #==============================================================================: Compile variables
 CC			= 	cc
 CFLAGS		= 	-Wall -Werror -Wextra
+MAKEFLAGE	=	--no-print-directory
 RM			=	rm -rf
 AR			=	ar rcs
 MKDIR		=	mkdir -p objs
@@ -28,9 +29,11 @@ HEADERS		= 	-I include
 SRCS		=	$(addprefix src/, \
 					main.c \
 				$(addprefix utils/, \
-					sim_check.c \
+					clean.c \
 					get_time.c \
 					initiate_data.c \
+					sim_check.c \
+					print_state.c \
 					validate_args.c) \
 				$(addprefix functions/, \
 					ft_calloc.c \
@@ -38,7 +41,7 @@ SRCS		=	$(addprefix src/, \
 				$(addprefix simulation/, \
 					threads.c \
 					sim_exec.c \
-				)
+					actions.c))
 
 #==============================================================================: Color codes
 GREEN		= \033[1;32m

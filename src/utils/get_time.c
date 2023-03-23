@@ -6,13 +6,13 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 16:59:48 by kblok         #+#    #+#                 */
-/*   Updated: 2023/02/13 17:03:20 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/21 16:42:58 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	get_time(void)
+long	gettime(void)
 {
 	struct timeval	time;
 

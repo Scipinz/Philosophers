@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/27 16:36:20 by kblok         #+#    #+#                 */
-/*   Updated: 2023/03/21 14:42:32 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/22 14:04:08 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 static bool	death_check(t_data *data)
 {
 	size_t	i;
-	long	current;
+	long	cur_time;
 
 	i = 0;
-	current = gettime();
+	cur_time = gettime();
 	while (data->amount_philo > i)
 	{
 		pthread_mutex_lock(&data->lock_data);
-		if (current - data->philo[i].time_eaten > data->time_to_die)
+		if (cur_time - data->philo[i].time_eaten > data->time_to_die)
 		{
 			pthread_mutex_unlock(&data->lock_data);
 			pthread_mutex_lock(&data->lock_data);
-			data->sim_active = false;
+			data->active_sim = false;
 			pthread_mutex_unlock(&data->lock_data);
-			print_action(data, &data->philo[i], DIED, true);
+			print_state(data, &data->philo[i], DIED, true);
 			return (true);
 		}
 		pthread_mutex_unlock(&data->lock_data);
@@ -45,7 +45,7 @@ static bool	meal_check(t_data *data)
 	while (data->amount_philo > i)
 	{
 		pthread_mutex_lock(&data->lock_data);
-		if (data->amount_meals > data->philo[i].meals_eaten)
+		if (data->philo[i].meals_eaten < data->amount_meals)
 		{
 			pthread_mutex_unlock(&data->lock_data);
 			return (false);
@@ -54,9 +54,9 @@ static bool	meal_check(t_data *data)
 		i++;
 	}
 	pthread_mutex_lock(&data->lock_data);
-	data->sim_active = false;
+	data->active_sim = false;
 	pthread_mutex_unlock(&data->lock_data);
-	print_action(data, &data->philo, FINISHED, true);
+	print_state(data, data->philo, FINISHED, true);
 	return (true);
 }
 
@@ -67,7 +67,7 @@ void	sim_check(t_data *data)
 		if (data->meals)
 			if (meal_check(data))
 				return ;
-		if (death_check)
+		if (death_check(data))
 			return ;
 		usleep(10);
 	}

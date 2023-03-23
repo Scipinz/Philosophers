@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/07 12:47:29 by kblok         #+#    #+#                 */
-/*   Updated: 2023/02/14 15:16:43 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/22 14:20:11 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	t_state state;
 
 	if (!validate_args(argc, argv))
 		return (EXIT_FAILURE);
@@ -23,7 +24,7 @@ int	main(int argc, char **argv)
 	if (!sim_exec(&data))
 		return (EXIT_FAILURE);
 	sim_check(&data);
-	p_join(&data, ALL);
-	cleanup(&data, ALL);
+	join_threads(&data);
+	clean(&data, ALL);
 	return (EXIT_SUCCESS);
 }

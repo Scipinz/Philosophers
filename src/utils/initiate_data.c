@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:17:49 by kblok         #+#    #+#                 */
-/*   Updated: 2023/02/14 15:03:47 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/22 13:48:47 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static bool	init_philos(t_data *data)
 	}
 	while (i < data->amount_philo)
 	{
-		if (!p_mutex_init(&data->fork[i]))
+		if (!mutex_init(&data->fork[i]))
 		{
 			free (data->philo);
 			free (data->fork);
@@ -71,12 +71,12 @@ bool	init_data(t_data *data, char **argv)
 	assign_args(data, argv);
 	if (!init_philos(data))
 		return (false);
-	if (!p_mutex_init(&data->lock_data))
+	if (!mutex_init(&data->lock_data))
 	{
 		clean(data, DATA);
 		return (false);
 	}
-	if (!p_mutex_init(&data->lock_print))
+	if (!mutex_init(&data->lock_print))
 	{
 		clean(data, PRINT);
 		return (false);

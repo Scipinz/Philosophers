@@ -6,13 +6,13 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/14 15:12:04 by kblok         #+#    #+#                 */
-/*   Updated: 2023/03/20 14:23:31 by kblok         ########   odam.nl         */
+/*   Updated: 2023/03/22 13:56:02 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*sims(void *arg)
+void	*philos(void *arg)
 {
 	t_philo	*philo;
 	t_data	*data;
@@ -20,11 +20,11 @@ void	*sims(void *arg)
 	philo = ((t_wrap *)arg)->w_philo;
 	data = ((t_wrap *)arg)->w_data;
 	free ((t_wrap *)arg);
-	while (read_data(&data->lock_data, &data->sim_active))
+	while (read_data(&data->lock_data, &data->active_sim))
 	{
-		if (!philo_eat(data, philo) || \
-			!philo_think(data, philo) || \
-			!philo_sleep(data, philo))
+		if (!action_eating(data, philo) || \
+			!action_thinking(data, philo) || \
+			!action_sleeping(data, philo))
 			return (NULL);
 	}
 	return (NULL);
@@ -45,7 +45,7 @@ static bool	make_threads(t_data *data)
 		data->philo[i].time_eaten = gettime();
 		data_wrap->w_data = data;
 		data_wrap->w_philo = &data->philo[i];
-		if (!p_create(&data->philo[i].thread, data_wrap))
+		if (!create_threads(&data->philo[i].thread, data_wrap))
 		{
 			free (data_wrap);
 			return (false);
@@ -59,7 +59,7 @@ bool	sim_exec(t_data *data)
 {
 	if (!make_threads(data))
 	{
-		cleaup(data, PRINT);
+		clean(data, PRINT);
 		return (false);
 	}
 	return (true);
